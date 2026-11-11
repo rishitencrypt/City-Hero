@@ -1,0 +1,803 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI_ParameterPanel.gd" id="1_panelscript"]
+
+[sub_resource type="StyleBoxFlat" id="Panel_bg"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+content_margin_right = 12.0
+content_margin_bottom = 10.0
+bg_color = Color(0.05, 0.08, 0.11, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.62, 0.74, 0.45)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="UI_ParameterPanel" type="Control"]
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 110.0
+offset_right = 360.0
+offset_bottom = -16.0
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_panelscript")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("Panel_bg")
+
+[node name="Layout" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Panel/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Sky Parameters"
+
+[node name="Hint" type="Label" parent="Panel/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.78, 0.86, 1)
+theme_override_font_sizes/font_size = 11
+text = "H - hide / show this panel"
+
+[node name="SurfaceRow" type="HBoxContainer" parent="Panel/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SurfaceLabel" type="Label" parent="Panel/Layout/SurfaceRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Preset"
+
+[node name="SurfaceSelector" type="OptionButton" parent="Panel/Layout/SurfaceRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+selected = 0
+item_count = 2
+popup/item_0/text = "Daylight"
+popup/item_0/id = 0
+popup/item_1/text = "Warm Dusk"
+popup/item_1/id = 1
+
+[node name="Separator" type="HSeparator" parent="Panel/Layout"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Params" type="VBoxContainer" parent="Panel/Layout/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Group1" type="Label" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "ZENITH AND HORIZON"
+
+[node name="horizon_sharpness" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/horizon_sharpness"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/horizon_sharpness/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Horizon Sharpness"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/horizon_sharpness/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "5.82"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/horizon_sharpness"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.5
+max_value = 16.0
+step = 0.01
+value = 5.82
+
+[node name="horizon_offset" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/horizon_offset"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/horizon_offset/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Horizon Offset"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/horizon_offset/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.10"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/horizon_offset"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = -0.5
+max_value = 0.5
+step = 0.01
+value = 0.098
+
+[node name="Group2" type="Label" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "SUN"
+
+[node name="sun_follows_light" type="CheckBox" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+button_pressed = false
+text = "Sun Follows Light"
+
+[node name="sun_size" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/sun_size"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/sun_size/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Sun Size"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/sun_size/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.011"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/sun_size"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0005
+max_value = 0.05
+step = 0.001
+value = 0.011
+
+[node name="sun_glow_size" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/sun_glow_size"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/sun_glow_size/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Sun Glow Size"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/sun_glow_size/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.40"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/sun_glow_size"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.401
+
+[node name="sun_glow_falloff" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/sun_glow_falloff"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/sun_glow_falloff/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Sun Glow Falloff"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/sun_glow_falloff/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "8.95"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/sun_glow_falloff"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 1.0
+max_value = 16.0
+step = 0.01
+value = 8.95
+
+[node name="Group3" type="Label" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "SKY GRADIENT"
+
+[node name="sky_gradient_angle" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/sky_gradient_angle"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/sky_gradient_angle/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Sky Gradient Angle"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/sky_gradient_angle/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "160.00"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/sky_gradient_angle"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 360.0
+step = 0.1
+value = 160.0
+
+[node name="sky_gradient_spread" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/sky_gradient_spread"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/sky_gradient_spread/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Sky Gradient Spread"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/sky_gradient_spread/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.76"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/sky_gradient_spread"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.755
+
+[node name="sky_gradient_strength" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/sky_gradient_strength"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/sky_gradient_strength/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Sky Gradient Strength"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/sky_gradient_strength/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.20"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/sky_gradient_strength"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.195
+
+[node name="Group4" type="Label" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "ATMOSPHERE"
+
+[node name="atmosphere_strength" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/atmosphere_strength"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/atmosphere_strength/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Atmosphere Strength"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/atmosphere_strength/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "1.50"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/atmosphere_strength"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 1.5
+step = 0.01
+value = 1.5
+
+[node name="atmosphere_falloff" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/atmosphere_falloff"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/atmosphere_falloff/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Atmosphere Falloff"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/atmosphere_falloff/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "6.97"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/atmosphere_falloff"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+step = 0.01
+value = 6.97
+
+[node name="Group5" type="Label" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "COLOR GRADING"
+
+[node name="exposure" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/exposure"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/exposure/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Exposure"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/exposure/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "1.05"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/exposure"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.1
+max_value = 4.0
+step = 0.01
+value = 1.05
+
+[node name="contrast" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/contrast"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/contrast/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Contrast"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/contrast/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "1.05"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/contrast"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.5
+max_value = 2.0
+step = 0.01
+value = 1.05
+
+[node name="saturation" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/saturation"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/saturation/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Saturation"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/saturation/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "1.48"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/saturation"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 2.5
+step = 0.01
+value = 1.48
+
+[node name="Group6" type="Label" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.66, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 12
+text = "CLOUDS"
+
+[node name="clouds_enabled" type="CheckBox" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+button_pressed = true
+text = "Clouds Enabled"
+
+[node name="cloud_coverage" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_coverage"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_coverage/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Coverage"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_coverage/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.58"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_coverage"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.579
+
+[node name="cloud_softness" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_softness"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_softness/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Softness"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_softness/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.26"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_softness"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.001
+max_value = 0.5
+step = 0.01
+value = 0.262
+
+[node name="cloud_bands" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_bands"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_bands/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Bands"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_bands/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "5.00"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_bands"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 1.0
+max_value = 8.0
+step = 0.01
+value = 5.004
+
+[node name="cloud_density" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_density"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_density/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Density"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_density/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.38"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_density"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.378
+
+[node name="cloud_stretch" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_stretch"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_stretch/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Stretch"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_stretch/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.25"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_stretch"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 0.97
+step = 0.01
+value = 0.245
+
+[node name="cloud_swirl" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_swirl"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_swirl/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Swirl"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_swirl/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.36"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_swirl"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.364
+
+[node name="cloud_style" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_style"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_style/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Style"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_style/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.28"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_style"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 4.0
+step = 0.01
+value = 0.276
+
+[node name="cloud_scale" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_scale"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_scale/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Scale"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_scale/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "4.45"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_scale"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.5
+max_value = 8.0
+step = 0.01
+value = 4.45
+
+[node name="cloud_height" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_height"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_height/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Height"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_height/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.00"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_height"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 0.5
+step = 0.01
+value = 0.0
+
+[node name="cloud_speed" type="VBoxContainer" parent="Panel/Layout/Scroll/Params"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Panel/Layout/Scroll/Params/cloud_speed"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Panel/Layout/Scroll/Params/cloud_speed/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Cloud Speed"
+
+[node name="Value" type="Label" parent="Panel/Layout/Scroll/Params/cloud_speed/Header"]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.95, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "0.34"
+horizontal_alignment = 2
+
+[node name="Slider" type="HSlider" parent="Panel/Layout/Scroll/Params/cloud_speed"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.336

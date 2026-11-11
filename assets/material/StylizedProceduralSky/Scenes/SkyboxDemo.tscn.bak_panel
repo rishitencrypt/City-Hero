@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cevei0yalk8le"]
+
+[ext_resource type="Material" uid="uid://dblt43fr8wrqf" path="res://Materials/EA_Skybox_Default.tres" id="1_sky_default"]
+[ext_resource type="Material" path="res://Materials/EA_Skybox_WarmDusk.tres" id="2_sky_dusk"]
+[ext_resource type="Script" uid="uid://dwqblgbtqoos3" path="res://Scripts/DemoCamera.gd" id="3_cam"]
+[ext_resource type="Script" uid="uid://ch46vg03x7q7f" path="res://Scripts/SkyPresets.gd" id="4_presets"]
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = ExtResource("1_sky_default")
+
+[sub_resource type="Environment" id="Env_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+reflected_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground"]
+albedo_color = Color(0.34, 0.33, 0.3, 1)
+
+[sub_resource type="PlaneMesh" id="Mesh_ground"]
+material = SubResource("Mat_ground")
+size = Vector2(400, 400)
+
+[sub_resource type="StandardMaterial3D" id="Mat_prop"]
+albedo_color = Color(0.74, 0.72, 0.68, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="Mesh_box"]
+material = SubResource("Mat_prop")
+size = Vector3(3, 6, 3)
+
+[sub_resource type="CylinderMesh" id="Mesh_cyl"]
+material = SubResource("Mat_prop")
+top_radius = 1.1
+bottom_radius = 1.1
+height = 9.0
+
+[sub_resource type="SphereMesh" id="Mesh_sphere"]
+material = SubResource("Mat_prop")
+radius = 2.0
+height = 4.0
+
+[node name="SkyboxDemo" type="Node3D" unique_id=1872211288]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=75847051]
+environment = SubResource("Env_1")
+script = ExtResource("4_presets")
+presets = Array[ShaderMaterial]([ExtResource("1_sky_default"), ExtResource("2_sky_dusk")])
+sun_path = NodePath("../Sun")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=6978094]
+transform = Transform3D(0.529919, 0.613112, -0.5859, 0, 0.690881, 0.722968, 0.848048, -0.383115, 0.366111, 0, 12, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=2092255601]
+mesh = SubResource("Mesh_ground")
+
+[node name="Props" type="Node3D" parent="." unique_id=549104185]
+
+[node name="Box" type="MeshInstance3D" parent="Props" unique_id=229280738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, -2)
+mesh = SubResource("Mesh_box")
+
+[node name="Cylinder" type="MeshInstance3D" parent="Props" unique_id=779893227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4.5, 1)
+mesh = SubResource("Mesh_cyl")
+
+[node name="Sphere" type="MeshInstance3D" parent="Props" unique_id=1618208436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 5)
+mesh = SubResource("Mesh_sphere")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=617657472]
+transform = Transform3D(-0.5299, 0.3584, 0.7686, 0, 0.9063, -0.4226, -0.848, -0.2239, -0.4802, 13.83, 1.39, -8.64)
+far = 600.0
+script = ExtResource("3_cam")

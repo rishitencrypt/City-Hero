@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://yk3efowkjhc0"
+path="res://.godot/imported/kar enjin.mp3-c152414a37d438ea50fc3d8f3fb89f38.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/kar enjin.mp3"
+dest_files=["res://.godot/imported/kar enjin.mp3-c152414a37d438ea50fc3d8f3fb89f38.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

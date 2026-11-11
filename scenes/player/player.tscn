@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b1cpy6as2julv"]
+
+[ext_resource type="Script" uid="uid://cyprjnoeg64kl" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="PackedScene" uid="uid://bwsq4wnvhgwkr" path="res://assets/characters/kenney-mini/GLB format/character-male-a.glb" id="2_dovo2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dw6ny"]
+height = 2.4624023
+
+[node name="Player" type="CharacterBody3D" unique_id=1972099683]
+script = ExtResource("1_8afob")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1710278818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.620316, 0)
+shape = SubResource("CapsuleShape3D_dw6ny")
+
+[node name="CameraPivot" type="SpringArm3D" parent="." unique_id=1611653923]
+transform = Transform3D(1, 0, 0, 0, 0.9781476, 0.2079117, 0, -0.2079117, 0.9781476, 0, 1.5, 0)
+spring_length = 2.5
+
+[node name="Camera" type="Camera3D" parent="CameraPivot" unique_id=94613344]
+
+[node name="ModelPivot" type="Node3D" parent="." unique_id=922832419]
+
+[node name="CharacterModel" parent="ModelPivot" unique_id=1401679679 instance=ExtResource("2_dovo2")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[editable path="ModelPivot/CharacterModel"]
