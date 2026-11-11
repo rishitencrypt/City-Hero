@@ -40,10 +40,3 @@ Players explore a 3D city environment and encounter challenges involving:
 5. Choose the folder containing `project.godot`.
 6. Import and run the project.
 
-## Project Status
-
-Work in Progress. Some gameplay mechanics and features may still be under development.
-
-## License
-
-No license has been selected yet.
